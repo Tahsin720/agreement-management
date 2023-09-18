@@ -1,0 +1,149 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-4 col-lg-4 col-md-4 col-xs-4">
+      <form [formGroup]="reactiveroleform" (ngSubmit)="CreateAgreement()">
+        <div class="form-group">
+          <label>vendor_id</label>
+          <input
+            type="number"
+            class="form-control"
+            formControlName="vendor_id"
+            placeholder="Enter vendor_id"
+          />
+          <small
+            *ngIf="
+              reactiveroleform.get('vendor_id')?.invalid &&
+              reactiveroleform.get('vendor_id')?.touched
+            "
+            class="text-danger"
+            >vendor_id is required.</small
+          >
+        </div>
+
+        <div class="form-group">
+          <label>bl_code</label>
+          <input
+            type="number"
+            class="form-control"
+            formControlName="bl_code"
+            placeholder="Enter BL Code"
+          />
+          <small
+            *ngIf="
+              reactiveroleform.get('bl_code')?.invalid &&
+              reactiveroleform.get('bl_code')?.touched
+            "
+            class="text-danger"
+            >bl_code is required.</small
+          >
+        </div>
+
+        <div class="form-group">
+          <label>document_code</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="document_code"
+            placeholder="Enter document code"
+          />
+          <small
+            *ngIf="
+              reactiveroleform.get('document_code')?.invalid &&
+              reactiveroleform.get('document_code')?.touched
+            "
+            class="text-danger"
+            >Document Code is required.</small
+          >
+        </div>
+        <div class="form-group">
+            <label>start</label>
+            <input
+              type="date"
+              class="form-control"
+              formControlName="start"
+              placeholder="Set the start date"
+            />
+            <small
+              *ngIf="
+                reactiveroleform.get('start')?.invalid &&
+                reactiveroleform.get('start')?.touched
+              "
+              class="text-danger"
+              >Start date is required.</small
+            >
+          </div>
+          <div class="form-group">
+            <label>expiry_date</label>
+            <input
+              type="date"
+              class="form-control"
+              formControlName="expiry_date"
+              placeholder="Enter expiry_date"
+            />
+            <small
+              *ngIf="
+                reactiveroleform.get('expiry_date')?.invalid &&
+                reactiveroleform.get('expiry_date')?.touched
+              "
+              class="text-danger"
+              >expiry_date is required.</small
+            >
+          </div>
+        <div class="form-group">
+          <label for="file">File</label>
+          <input
+            formControlName="File"
+            type="file"
+            (change)="onFileSelected($event)"
+            class="form-control"
+          />
+          <small
+            *ngIf="
+              reactiveroleform.get('file')?.invalid &&
+              reactiveroleform.get('file')?.touched
+            "
+            class="text-danger"
+            >File is required.</small
+          >
+        </div>
+        <button
+          [disabled]="reactiveroleform.invalid"
+          type="submit"
+          class="btn btn-primary"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+
+    <div class="col-sm-8 col-lg-8 col-md-8 col-xs-8">
+      <label>Agreement List</label>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Vendor ID</th>
+            <th scope="col">BL Code</th>
+            <th scope="col">Document Code</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">Duration</th>
+            <th scope="col">Expiry Date</th>
+            <th scope="col">Status</th>
+            <th scope="col">Renewed</th>
+          </tr>
+        </thead>
+        <tbody *ngFor = "let data of models">
+          <tr>
+            <td>{{data.vendor_id}}</td>
+            <td>{{data.bl_code}}</td>
+            <td>{{data.document_code}}</td>
+            <td>{{data.start}}</td>
+            <td>{{data.duration}}</td>
+            <td>{{data.expiry_date}}</td>
+            <td>{{data.status}}</td>
+            <td>{{data.is_renewed}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
